@@ -22,7 +22,9 @@ const productCtr = {
   },
   getProduct: async(req, res) => {
     try {
-      const product = await Products.findById(req.params.id)
+      const {id} = req.params
+
+      const product = await Products.findById(id)
 
       if(!product) 
         return res.status(404).json({msg: 'This product does not exist.'})
