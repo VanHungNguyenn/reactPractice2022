@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import ProductInfo from '../components/ProductInfo'
+import useQuery from '../hooks/useQuery'
 
 const ProductDetail = () => {
 	const { id } = useParams()
+	const { data: product, loading, error } = useQuery(`/products/${id}`)
 
-	console.log(id)
-
-	const [product, setProduct] = useState()
-
-	useEffect(() => {
-		axios.get(`/products/${id}`).then((res) => console.log(res))
-	}, [id])
-
-	return <div>ProductDetail</div>
+	return (
+		<main>
+			{product && <ProductInfo product={product} />}
+			{loading && <h2>Loading...</h2>}
+			{error && <h2>{error}</h2>}
+		</main>
+	)
 }
 
 export default ProductDetail
