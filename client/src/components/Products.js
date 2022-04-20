@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ProductsCard from './ProductsCard'
 
 const Products = ({ products }) => {
@@ -11,4 +11,4 @@ const Products = ({ products }) => {
 	)
 }
 
-export default Products
+export default memo(Products)

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import usePagination from '../hooks/usePagination'
 
 const Pagination = ({ totalPages, page }) => {
@@ -33,4 +34,4 @@ const Pagination = ({ totalPages, page }) => {
 	)
 }
 
-export default Pagination
+export default memo(Pagination)
