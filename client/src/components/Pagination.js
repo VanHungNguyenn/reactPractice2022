@@ -1,21 +1,34 @@
-import React from 'react'
+import usePagination from '../hooks/usePagination'
 
 const Pagination = ({ totalPages, page }) => {
-	const newArr = [...Array(totalPages)].map((_, i) => i + 1)
-
-	const isActive = (index) => {
-		return index === page ? 'active' : ''
-	}
+	const { firstArr, lastArr, isActive, prev, next, jump } = usePagination(
+		totalPages,
+		page
+	)
 
 	return (
 		<div className='pagination'>
-			<button>&laquo;</button>
-			{newArr.map((page) => (
-				<button key={page} className={`${isActive(page)}`}>
+			<button onClick={prev}>&laquo;</button>
+			{firstArr.map((page) => (
+				<button
+					key={page}
+					className={`${isActive(page)}`}
+					onClick={() => jump(page)}
+				>
 					{page}
 				</button>
 			))}
-			<button>&raquo;</button>
+			{lastArr.length > 0 && <button>...</button>}
+			{lastArr.map((page) => (
+				<button
+					key={page}
+					className={`${isActive(page)}`}
+					onClick={() => jump(page)}
+				>
+					{page}
+				</button>
+			))}
+			<button onClick={next}>&raquo;</button>
 		</div>
 	)
 }
