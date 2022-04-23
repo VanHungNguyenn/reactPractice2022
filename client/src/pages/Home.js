@@ -41,7 +41,7 @@ const Home = () => {
 			<Products products={products} />
 			{loading && <h2>Loading...</h2>}
 			{error && <h2>{error}</h2>}
-			<Pagination totalPages={totalPages} page={page} />
+			<Pagination totalPages={totalPages} page={page} sort={sort} />
 		</>
 	)
 }

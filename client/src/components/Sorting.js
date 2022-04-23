@@ -1,8 +1,11 @@
 import React from 'react'
 import useCustomRoute from '../hooks/useCustomRoute'
+import { useNavigate } from 'react-router-dom'
 
 const Sorting = ({ page, sort }) => {
 	const { pushQuery } = useCustomRoute()
+
+	const navigate = useNavigate()
 	const handleSort = (e) => {
 		const { value } = e.target
 		navigate(`?sort=${value}`)
